@@ -35,10 +35,14 @@ public class Main {
 
     private static void displayResult(final ResultSet resultSet) throws SQLException {
         final ResultSetMetaData metaData = resultSet.getMetaData();
+        int result_row = 0;
 
-        System.out.println("Result: ");
-        for (int i = 1; i < metaData.getColumnCount(); i++)
-            System.out.println("\n\t" + metaData.getColumnName(i) + ": " + resultSet.getString(1));
+        System.out.print("Result: ");
+        while (resultSet.next()) {
+            System.out.printf("\n\tRow %d:", result_row++);
+            for (int i = 1; i < metaData.getColumnCount(); i++)
+                System.out.println("\n\t\t" + metaData.getColumnName(i) + ": " + resultSet.getObject(1));
+        }
         System.out.println();
     }
 
