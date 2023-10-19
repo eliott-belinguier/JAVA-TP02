@@ -1,0 +1,6 @@
+rootProject.name = 'tp02'
+
+['vue'].each {
+    include ":tp02-${it}"
+    project(":tp02-${it}").projectDir = file(it)
+}
